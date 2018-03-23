@@ -1,64 +1,111 @@
-/******************************************************************
-* Programa: Ejemplo Clase 2
-*
-* Objetivo:
-*   -Realizar un programa que solicite cinco números e imprima por pantalla el
-*    promedio, el máximo y el mínimo.
-*
-* Aspectos a destacar:
-*   -El uso de bucles para pedir un número tras otro
-*   -El uso de acumuladores, se tiene que guardar la suma para luego hacer
-*    el promedio
-*   -El uso del if para preguntar si el numero ingresado es mayor o menor
-*    para guardar los máximos y mínimos
-*
-* Version: 0.1 del 29 diciembre de 2015
-* Autor: Mauricio Dávila
-* Revisión: Ernesto Gigliotti
-*
-* *******************************************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
-
-
+//>Se ingresan numeros (distintos de 0), no se sabe cuantos.
+/*
+    Se pide mostrar:
+    Cantidad pares e impares
+    Porcentaje de num positivos y negativos
+    Maximo y minimo
+    Maximo par
+    Cantidad de numeros comprendidos entre 125 y 236
+*/
 int main()
 {
-    int maximo;
-    int minimo;
-    int acumulador;
-    int auxiliarInt;
-    int i;
+    char respuesta='s';
+    int contador=0;
+    int numero;
+    int contadorPares=0;
+    int contadorImpares=0;
+    int contadorPostivos=0;
+    int contadorNegativos=0;
+    int min;
+    int max;
+    int maxPar=0;
+    int contadorNum=0;
+    float porcentajePositivos;
+    float porcentajeNegativos;
 
-    // Solicito el primer número el cual por ser el primero sera tanto el
-    // maximo como el minimo y el primer numero a ser acumulado
-    printf("Ingrese un numero: ");
-    scanf("%d",&auxiliarInt);
-    maximo = auxiliarInt;
-    minimo = auxiliarInt;
-    acumulador = auxiliarInt;
-
-    // Solicito el resto de los numeros
-    for(i=0;i<4;i++)
+    while(respuesta!='n')
     {
-        printf("Ingrese un numero: ");
-        scanf("%d",&auxiliarInt);
-        acumulador = acumulador + auxiliarInt;
+        contador++;
+        printf("Ingrese numero: ");
+        scanf("%d",&numero);
 
-        if(auxiliarInt > maximo)
+        if(numero==0)
         {
-            maximo = auxiliarInt;
+            printf("Error, ingrese numero distinto de cero: ");
+            scanf("%d",&numero);
+        }
+        if(numero%2==0)
+        {
+            contadorPares++;
+        }
+        else
+        {
+            contadorImpares++;
         }
 
-        if(auxiliarInt < minimo)
+        if(numero>0)
         {
-            minimo = auxiliarInt;
+            contadorPostivos++;
         }
+        else
+        {
+            contadorNegativos++;
+        }
+
+        if(contador==1)
+        {
+            min=numero;
+            max=numero;
+
+        }
+        else
+        {
+            if(numero<min)
+            {
+                min=numero;
+            }
+            if(numero>max)
+            {
+                max=numero;
+            }
+        }
+
+        if(numero>maxPar && numero%2==0)
+        {
+                maxPar=numero;
+        }
+
+
+        if(numero<236 && numero>125)
+        {
+            contadorNum++;
+        }
+
+        printf("Ingrese n para detener \n");
+        respuesta=getch();
     }
 
-    printf("El maximo es: %i\n",maximo);
-    printf("El minimo es: %i\n",minimo);
-    printf("El promedio es: %f\n", ((float)acumulador) / 5);
-    return 0;
+    printf("La cantidad de pares es: %d \n",contadorPares);
+    printf("La cantidad de impares es: %d \n",contadorImpares);
+    porcentajePositivos=(float)contadorPostivos*100/contador;
+    porcentajeNegativos=100-porcentajePositivos;
+    printf("El porcentaje de positivos es: %.2f \n",porcentajePositivos);
+    printf("El porcentaje de negativos es: %.2f \n",porcentajeNegativos);
+    printf("El numero minimo fue: %d \n",min);
+    printf("El numero maximo fue: %d \n",max);
+    if(maxPar!=0)
+    {
+        printf("El maximo par fue: %d \n",maxPar);
+    }
+    else
+    {
+        printf("No hay maximo par \n");
+    }
 
+    printf("Los numeros comprendidos entre 125 y 236 son: %d \n",contadorNum);
+
+
+    return 0;
 }
