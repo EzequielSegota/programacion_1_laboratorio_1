@@ -12,7 +12,7 @@
 int main()
 {
     char respuesta='s';
-    int contador=0;
+    int flag=0;
     int numero;
     int contadorPares=0;
     int contadorImpares=0;
@@ -27,7 +27,7 @@ int main()
 
     while(respuesta!='n')
     {
-        contador++;
+        contadorNum++;
         printf("Ingrese numero: ");
         scanf("%d",&numero);
 
@@ -38,7 +38,13 @@ int main()
         }
         if(numero%2==0)
         {
+            if(numero>max || contadorPares==0)
+            {
+                maxPar=numero;
+            }
             contadorPares++;
+
+
         }
         else
         {
@@ -54,11 +60,11 @@ int main()
             contadorNegativos++;
         }
 
-        if(contador==1)
+        /*if(flag==0)
         {
             min=numero;
             max=numero;
-
+            flag=1;
         }
         else
         {
@@ -70,13 +76,22 @@ int main()
             {
                 max=numero;
             }
+        }*/
+        if(flag==0 || numero>max)
+        {
+            max=numero;
+        }
+        if(flag==0 || numero<min)
+        {
+            min=numero;
+            flag=1;
         }
 
-        if(numero>maxPar && numero%2==0)
+        /*if(numero>maxPar && numero%2==0)
         {
                 maxPar=numero;
         }
-
+        */
 
         if(numero<236 && numero>125)
         {
@@ -89,7 +104,7 @@ int main()
 
     printf("La cantidad de pares es: %d \n",contadorPares);
     printf("La cantidad de impares es: %d \n",contadorImpares);
-    porcentajePositivos=(float)contadorPostivos*100/contador;
+    porcentajePositivos=(float)contadorPostivos*100/contadorNum;
     porcentajeNegativos=100-porcentajePositivos;
     printf("El porcentaje de positivos es: %.2f \n",porcentajePositivos);
     printf("El porcentaje de negativos es: %.2f \n",porcentajeNegativos);
