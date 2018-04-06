@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 /* Reglas Funciones
-1.Lo que todos los lenguajes conmparten para definir una funcionalidad.Prototipo o Firma(Firma porque es ùnica, compuesta por el tipo de dato que retorna)
+1.Lo que todos los lenguajes conmparten para definir una funcionalidad.Prototipo o Firma(Firma porque es Ã¹nica, compuesta por el tipo de dato que retorna)
 void saludar(void);
 2.En la parte 2 esta el main
     main
@@ -55,7 +55,7 @@ int getEntero(char* mensaje,char* mensajeError,int minimo, int maximo)
         }
         printf("%s",mensajeError);
     }
-    while(0);
+    while(1=1);
     return retorno;
 }
 
@@ -76,7 +76,7 @@ int pedirNumeroPar()
     int par=-1;
     int numeroUno;
 
-    printf("Ingrese nùmero: ");
+    printf("Ingrese nÃ¹mero: ");
     scanf("%d",&numeroUno);
 
     if(numeroUno%2==0)
